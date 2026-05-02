@@ -566,7 +566,7 @@ class OptionsManager {
       return;
     }
     try {
-      await chrome.runtime.sendMessage({ action: 'manualDownload' });
+      await chrome.runtime.sendMessage({ action: 'triggerDownload', trigger: 'manual' });
       this.showStatus('正在下载...', 'success');
     } catch (error) {
       this.showStatus('下载请求失败: ' + error.message, 'error');

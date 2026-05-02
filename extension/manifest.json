@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Kinesin",
-  "version": "1.4",
+  "version": "1.5",
   "description": "远程同步功能的URL重定向规则插件",
   "permissions": [
     "storage",

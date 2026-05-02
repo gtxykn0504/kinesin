@@ -59,7 +59,7 @@ class PopupManager {
       this.updateSyncStatus(SyncStatus.IDLE, '就绪');
       
       // 通知后台 popup 已打开（用于触发自动下载）
-      browser.runtime.sendMessage({ action: 'popupOpened' }).catch(() => {});
+      browser.runtime.sendMessage({ action: 'triggerDownload', trigger: 'popup' }).catch(() => {});
     } catch (error) {
       console.error('Initialization failed:', error);
       this.updateSyncStatus(SyncStatus.ERROR, '初始化错误');

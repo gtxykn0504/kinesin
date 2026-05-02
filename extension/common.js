@@ -1,7 +1,6 @@
 const STORAGE_KEY = 'rules';
 const GROUPS_KEY = 'groups';
 const CONFIG_KEY = 'syncConfig';
-const LAST_SYNC_KEY = 'lastSyncTime';
 
 const UNGROUPED_ID = 'ungrouped';
 const UNGROUPED_NAME = 'Ungrouped';
@@ -83,8 +82,7 @@ class SyncManager {
 
       await chrome.storage.sync.set({ 
         [STORAGE_KEY]: rules,
-        [GROUPS_KEY]: groups,
-        [LAST_SYNC_KEY]: Date.now()
+        [GROUPS_KEY]: groups
       });
 
       this.setStatus(SyncStatus.DOWNLOADED, '已下载');
@@ -126,10 +124,6 @@ class SyncManager {
         const errorText = await response.text();
         throw new Error(`HTTP ${response.status}: ${errorText}`);
       }
-
-      await chrome.storage.sync.set({
-        [LAST_SYNC_KEY]: Date.now()
-      });
 
       this.setStatus(SyncStatus.UPLOADED, '已上传');
       
